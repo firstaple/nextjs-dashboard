@@ -1,4 +1,5 @@
 // /dashboard/invoices page's ui
-export default function () {
+// edit function name
+export default function Page() {
   return <p>Invoices Page</p>;
 }
