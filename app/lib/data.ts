@@ -34,6 +34,7 @@ export async function fetchRevenue() {
 
 export async function fetchLatestInvoices() {
   try {
+    // Fetch the last 5 invoices, sorted bt date
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
@@ -64,6 +65,7 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
+    // Parallel data fetching
     const data = await Promise.all([
       invoiceCountPromise,
       customerCountPromise,
